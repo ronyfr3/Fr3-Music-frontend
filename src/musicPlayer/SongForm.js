@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import {CancelToken} from 'axios'
 import {MdCloudUpload} from 'react-icons/md'
+// import {ProgressBar} from 'react-bootstrap'
 import './Music.css'
 
 import { createSong } from '../redux/actions/SongActions';
@@ -8,11 +10,12 @@ import { useDispatch  } from 'react-redux';
 
 const SongForm = () => {
   const [file, setFile] = useState('');
-  const [singleProgress, setSingleProgress] = useState(0);
-console.log(singleProgress)
+  const [Progress, setProgress] = useState(0);
+  const cancelFileUpload=useRef(null)
+console.log(Progress)
   const handleChange = (e) => {
     setFile(e.target.files[0]);
-    setSingleProgress(0)
+    setProgress(0)
   };
 
   //percentage creator
@@ -20,9 +23,13 @@ console.log(singleProgress)
     onUploadProgress: (progressEvent) => {
       const { loaded, total } = progressEvent;
       const percentage = Math.floor(((loaded / 1000) * 100) / (total / 1000));
-      setSingleProgress(percentage);
+      setProgress(percentage);
     },
+    CancelToken:new CancelToken(cancel=>cancelFileUpload.current=cancel)
   };
+  const cancelUpload = () => {
+     if(cancelFileUpload.current) cancelFileUpload.current('user cancel the file upload')
+   }
 
   //UPLOAD/SEND DATA TO BACKEND
   const dispatch=useDispatch()
@@ -37,7 +44,12 @@ console.log(singleProgress)
     <div className='music_form'>
       <form>
         <input type="file" multiple={false} onChange={handleChange} className='upload_input'/>
-        <button className='upload_song' type='button' onClick={uploadSongFile}><MdCloudUpload className='uploadlogo'/> Upload Your Song</button>
+        <button className='upload_song' type='button' onClick={uploadSongFile}>
+          {Progress > 0 && Progress < 100 ? <p className='uploadPercentage'>{`${Progress}%`}</p> : (<MdCloudUpload className='uploadlogo' />)} Upload Your Song</button>
+        {
+          Progress > 0 && Progress < 100 && <button onClick={cancelUpload} className='cancelupload'>Cancel Upload</button>
+        }
+        {/* {Progress > 0 && Progress < 100 && (<ProgressBar animated={true} active now={Progress} label={`${Progress}%`}/>)} */}
       </form>
     </div>
   );

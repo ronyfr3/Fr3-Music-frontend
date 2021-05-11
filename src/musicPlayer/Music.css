@@ -1,3 +1,21 @@
+.uploadPercentage{
+  border-radius: 50%;
+  padding: 4px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(34, 34, 34);
+  margin-right: 5px;
+}
+.cancelupload{
+  border-radius: 5px;
+  background-color: rgb(173, 15, 15);
+  color: rgb(245, 238, 240);
+  border: none;
+  margin-top: 7px;
+  outline: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 5px 8px 5px 8px;
+}
 /* song form */
 .music_form {
   display: flex;
