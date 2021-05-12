@@ -16,7 +16,30 @@
   cursor: pointer;
   padding: 5px 8px 5px 8px;
 }
-
+.warning{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.upi{
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  background-color: rgb(34, 124, 26);
+  padding: 3px 7px 3px 7px;
+  border-radius: 2px;
+  border: 2px dotted rgb(185, 178, 178);
+}
+.btnrefresh{
+  cursor: pointer;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  outline: none;
+  border: none;
+  background-color: rgb(23, 23, 32);
+  color: white;
+}
 /* song form */
 .music_form {
   display: flex;
