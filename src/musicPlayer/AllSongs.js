@@ -14,25 +14,26 @@ import "./Music.css";
 const AllSongs = () => {
   const dispatch = useDispatch();
   const allsong = useSelector((state) => state.songs); //state.songs===songs:songReducer
-  const { songs } = allsong; //songs-->songs=[{_id,fileName etc}]  destructuring songs array
-  // console.log("Allsongs:--->", songs);
+  const { songs,loading,error } = allsong; //songs-->songs=[{_id,fileName etc}]  destructuring songs array
+  // console.log("Allsongs:--->", allsong);
 
   useEffect(() => {
     dispatch(getSongs());
   }, [dispatch]);
-if(songs.length===0){
-  return <Loader/>
+  console.log(loading)
+if(loading){
+  return <Loader error={error}/>
 }
 
   return (
-    <div className="songs_profiles">
-      {songs.map((song) => {
+           <div className="songs_profiles">
+      {songs.map((song,i) => {
         const { songURL, fileName, _id } = song;
         // console.log(song)
         //dispatch(downloadSong(_id))
         //we dont need redux for download file coz we never have to update it or need to do something with it
         return (
-          <div key={_id} className="song_info">
+          <div key={i} className="song_info">
             <div className="download_delete_song">
               <p
                 className="downloadbtn"

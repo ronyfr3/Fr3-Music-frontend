@@ -5,19 +5,18 @@ import {MdCloudUpload} from 'react-icons/md'
 import './Music.css'
 
 import { createSong } from '../redux/actions/SongActions';
-import { useDispatch  } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 const SongForm = () => {
   const [file, setFile] = useState('');
   const [Progress, setProgress] = useState(0);
-  const cancelFileUpload=useRef(null)
-console.log(Progress)
+  const cancelFileUpload = useRef(null)
   const handleChange = (e) => {
     setFile(e.target.files[0]);
     setProgress(0)
   };
-
+  
   //percentage creator
   const songFileOptions = {
     onUploadProgress: (progressEvent) => {
@@ -25,21 +24,19 @@ console.log(Progress)
       const percentage = Math.floor(((loaded / 1000) * 100) / (total / 1000));
       setProgress(percentage);
     },
-    CancelToken:new CancelToken(cancel=>cancelFileUpload.current=cancel)
+    CancelToken: new CancelToken(cancel => cancelFileUpload.current = cancel)
   };
   const cancelUpload = () => {
-     if(cancelFileUpload.current) cancelFileUpload.current('user cancel the file upload')
-   }
-
+    if (cancelFileUpload.current) cancelFileUpload.current('user cancel the file upload')
+  }
   //UPLOAD/SEND DATA TO BACKEND
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   const uploadSongFile = async () => {
     const formData = new FormData();
     formData.append("file", file);
-    dispatch(createSong(formData,songFileOptions));
+    dispatch(createSong(formData, songFileOptions));
   };
- 
-  // console.log(file)
+  
   return (
     <div className='music_form'>
       <form>
