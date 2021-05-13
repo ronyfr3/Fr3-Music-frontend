@@ -3,9 +3,10 @@ import {CancelToken} from 'axios'
 import {MdCloudUpload} from 'react-icons/md'
 // import {ProgressBar} from 'react-bootstrap'
 import './Music.css'
+import Warning from './Warning'
 
 import { createSong } from '../redux/actions/SongActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 
 
 const SongForm = () => {
@@ -37,6 +38,12 @@ const SongForm = () => {
     dispatch(createSong(formData, songFileOptions));
   };
   
+  const {error} = useSelector(state => state.songs)
+  console.log('error',error)
+
+
+
+
   return (
     <div className='music_form'>
       <form>
@@ -48,6 +55,7 @@ const SongForm = () => {
         }
         {/* {Progress > 0 && Progress < 100 && (<ProgressBar animated={true} active now={Progress} label={`${Progress}%`}/>)} */}
       </form>
+      <Warning error={error}/>
     </div>
   );
 };

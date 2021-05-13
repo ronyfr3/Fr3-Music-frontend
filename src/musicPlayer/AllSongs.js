@@ -10,13 +10,14 @@ import Loader from './Loader'
 import axios from "axios";
 import fileDownload from 'js-file-download' //it helps to download file to avoid req.headers set issue
 import "./Music.css";
-import Warning from "./Warning";
 
 const AllSongs = () => {
   const dispatch = useDispatch();
   const allsong = useSelector((state) => state.songs); //state.songs===songs:songReducer
-  const { songs, loading } = allsong; //songs-->songs=[{_id,fileName etc}]  destructuring songs array
-  console.log("Allsongs:--->", allsong);
+  const { songs, loading } = allsong;
+  //CONSOLE
+  // console.log("Allsongs:--->", allsong);
+  // console.log(error)
 
   useEffect(() => {
     dispatch(getSongs());
@@ -29,7 +30,7 @@ const AllSongs = () => {
   return (
     <>
       {
-        songs === undefined ? <Warning/> : (
+        songs === undefined ? '' : (
           <div className="songs_profiles">
             {songs.map((song, i) => {
               const { songURL, fileName, _id } = song;

@@ -1,12 +1,19 @@
 import React from 'react'
 import './Music.css'
+import Toastify from './Toastify'
 
-const Warning = () => {
+const Warning = ({ error }) => {
+   
     return (
-        <div className='warning'>
-            <p className='upi'>Upload Music Only</p>
-            <button onClick={() => window.location.reload(false)} className='btnrefresh'>Click to reload!</button>
-        </div>
+        <>
+            {
+                error === undefined ? '' :
+                <div className='warning'>
+                     <button onClick={() => window.location.reload(false)} className='btnrefresh'>Click to reload!</button>
+                    </div>
+            }
+            <Toastify error={error}/>
+      </>
     )
 }
 
