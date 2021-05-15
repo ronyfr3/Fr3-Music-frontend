@@ -7,7 +7,7 @@ const Warning = ({ error }) => {
     return (
         <>
             {
-                error === undefined ? '' :
+                error === undefined ?'':
                 <div className='warning'>
                      <button onClick={() => window.location.reload(false)} className='btnrefresh'>Tap here to get music</button>
                     </div>

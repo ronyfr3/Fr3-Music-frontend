@@ -13,7 +13,7 @@ import "./Music.css";
 
 const AllSongs = () => {
   const dispatch = useDispatch();
-  const allsong = useSelector((state) => state.songs); //state.songs===songs:songReducer
+  const allsong = useSelector((state) => state.songs);
   const { songs, loading } = allsong;
   //CONSOLE
   console.log(songs);
@@ -25,7 +25,6 @@ const AllSongs = () => {
   if (loading) {
     return <Loader />
   }
-
   return (
     <>
       {
