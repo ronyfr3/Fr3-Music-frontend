@@ -8,7 +8,7 @@ const Toastify = ({ error }) => {
         <div className='toast'>
          <ToastContainer  style={{ width: "300px",height:'100px' }}>
             { error === undefined ? '' : (
-                toast.error('Upload Failed! Click to Reload', {
+                toast.error(error, {
                 position:toast.POSITION.TOP_CENTER
             }) 
             )}

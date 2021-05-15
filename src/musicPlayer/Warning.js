@@ -9,7 +9,7 @@ const Warning = ({ error }) => {
             {
                 error === undefined ? '' :
                 <div className='warning'>
-                     <button onClick={() => window.location.reload(false)} className='btnrefresh'>Click to reload!</button>
+                     <button onClick={() => window.location.reload(false)} className='btnrefresh'>Tap here to get music</button>
                     </div>
             }
             <Toastify error={error}/>

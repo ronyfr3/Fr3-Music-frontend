@@ -39,10 +39,8 @@ const SongForm = () => {
   };
   
   const {error} = useSelector(state => state.songs)
-  console.log('error',error)
-
-
-
+  // console.log('error',error)
+   console.log("progress:",Progress)
 
   return (
     <div className='music_form'>

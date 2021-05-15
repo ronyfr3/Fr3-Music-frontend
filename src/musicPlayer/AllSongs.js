@@ -16,8 +16,7 @@ const AllSongs = () => {
   const allsong = useSelector((state) => state.songs); //state.songs===songs:songReducer
   const { songs, loading } = allsong;
   //CONSOLE
-  // console.log("Allsongs:--->", allsong);
-  // console.log(error)
+  console.log(songs);
 
   useEffect(() => {
     dispatch(getSongs());

@@ -11,7 +11,7 @@ import {
 } from '../constants/SongActionTypes'
 
 export const songReducer = (state = [], action) => {
-  console.log('reducer_state:',state)
+  // console.log('reducer_state:',state)
   switch (action.type) {
 
     // CREATE_SONG

@@ -50,7 +50,7 @@ export const createSong = (songFormData, options) => async (dispatch) => {
   } catch (error) {
      dispatch({
         type: CREATE_SONG_FAIL,
-        payload: error.message && 'please upload music only'
+        payload: error.response && error.response.data.message
       });
   }
 };
